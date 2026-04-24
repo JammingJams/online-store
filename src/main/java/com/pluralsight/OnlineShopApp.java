@@ -12,7 +12,7 @@ public class OnlineShopApp {
         String userInput = "";
         ArrayList<Product> products = Product.getProductList();
         ArrayList<Product> search = Product.searchProducts(products, userInput);
-        // searchResults = Product.searhResults(products, search);
+
 
         boolean userInApp = true;
         boolean userInProduct = true;
@@ -43,13 +43,8 @@ public class OnlineShopApp {
                                 System.out.println("Search by Product Name, Price, or Department!");
                                 userInput = sc.nextLine().replaceAll("\\s+","").trim().toLowerCase();
                                 search = Product.searchProducts(products, userInput);
+                                Product.searhResults(products, search);
 
-/*                                if (search.isEmpty()) {System.out.println("Product not currently available!");}
-                                else {
-                                    for (Product p : search) {
-                                        System.out.printf("%s|%s|$%.2f|%s\n", p.getSKU(), p.getProductName(), p.getPrice(), p.getDepartment());
-                                    }
-                                }*/
                             }
                             case ("A") -> {
                                 System.out.println("Type in a name product you want to add!");
