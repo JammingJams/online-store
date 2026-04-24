@@ -76,6 +76,7 @@ public class OnlineShopApp {
                         switch (userInput) {
                             case ("C") -> {
                                 System.out.println("Hey this works!!");
+                                userCart.clear();
                             }
                             case ("R") -> {
                                 if (userCart.isEmpty()) {
@@ -86,13 +87,12 @@ public class OnlineShopApp {
                                     for (Product p : userCart.values()) {
                                         System.out.printf("%s|%s|%.2f|%s\n", p.getSKU(), p.getProductName(), p.getPrice(), p.getDepartment());
                                     }
-                                    System.out.println("Please type in the name of item you want to remove!");
+                                    System.out.println("Please type in the SKU of item you want to remove!");
                                     System.out.println("Or type (X) to leave.");
-                                    userInput = sc.nextLine().trim().toLowerCase();
-                                    Product item = Product.addProducts(products, userInput);
-                                    if (item != null) {
-                                        System.out.println(item.getProductName() + " added to cart!");
-                                        userCart.remove(item.getSKU(), item);
+                                    userInput = sc.nextLine().trim();
+                                    Product removedItem = userCart.remove(userInput);
+                                    if (removedItem != null) {
+                                        System.out.println(removedItem.getProductName() + " removed from your cart!");
                                     }
                                     else {
                                         System.out.println("Product not found!");
