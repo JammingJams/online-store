@@ -75,7 +75,7 @@ public class OnlineShopApp {
                         userInput = sc.nextLine().replaceAll("\\s+","").trim().toUpperCase();
                         switch (userInput) {
                             case ("C") -> {
-                                System.out.println("Hey this works!!");
+                                System.out.println("All items checked out!");
                                 userCart.clear();
                             }
                             case ("R") -> {
