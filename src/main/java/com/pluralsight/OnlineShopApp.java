@@ -1,13 +1,14 @@
 package com.pluralsight;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Scanner;
 
 public class OnlineShopApp {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         //User shopingcart hashmap
-        //Product display hashmap
+        HashMap<Integer, Product> userCart = new HashMap<>();
         String userInput = "";
         ArrayList<Product> products = Product.getProductList();
         //ArrayList<Product> search = Product.searchProducts(products, userInput);
@@ -48,7 +49,6 @@ public class OnlineShopApp {
                                         System.out.printf("%s|%s|$%.2f|%s\n", p.getSKU(), p.getProductName(), p.getPrice(), p.getDepartment());
                                     }
                                 }
-
                             }
                             case ("A") -> {
                                 System.out.println("Hey this works!");
