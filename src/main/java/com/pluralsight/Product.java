@@ -77,6 +77,15 @@ public class Product {
         }    return results;
     }
 
+    public static Product addProducts(ArrayList<Product> products, String userInput) {
+        for (Product p : products) {
+            if
+            (p.getProductName().toLowerCase().contains(userInput)) {
+                return p;
+            }
+        }    return null;
+    }
+
     public static void searhResults(ArrayList<Product> products, ArrayList<Product> search) {
         if (search.isEmpty()) {System.out.println("Product not currently available!");}
         else {

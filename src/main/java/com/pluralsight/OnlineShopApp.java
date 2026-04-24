@@ -7,12 +7,11 @@ import java.util.Scanner;
 public class OnlineShopApp {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        //User shopingcart hashmap
-        HashMap<Integer, Product> userCart = new HashMap<>();
+
+        HashMap<String, Product> userCart = new HashMap<>();
         String userInput = "";
         ArrayList<Product> products = Product.getProductList();
         ArrayList<Product> search = Product.searchProducts(products, userInput);
-
 
         boolean userInApp = true;
         boolean userInProduct = true;
@@ -48,8 +47,15 @@ public class OnlineShopApp {
                             }
                             case ("A") -> {
                                 System.out.println("Type in a name product you want to add!");
-                                userInput = sc.nextLine().replaceAll("\\s+","").trim().toLowerCase();
-                                search = Product.searchProducts(products, userInput);
+                                userInput = sc.nextLine().trim().toLowerCase();
+                                Product item = Product.addProducts(products, userInput);
+                                if (item != null) {
+                                    System.out.println(item.getProductName() + " added to cart!");
+                                    userCart.put(item.getSKU(), item);
+                                }
+                                else {
+                                    System.out.println("Product not found!");
+                                }
 
                             }
                             case ("X") -> {userInProduct = false;}
@@ -72,7 +78,27 @@ public class OnlineShopApp {
                                 System.out.println("Hey this works!!");
                             }
                             case ("R") -> {
-                                System.out.println("Hey this works!");
+                                if (userCart.isEmpty()) {
+                                    System.out.println("Your cart is empty :(");
+                                }
+                                else {
+                                    System.out.println("Items in your cart:");
+                                    for (Product p : userCart.values()) {
+                                        System.out.printf("%s|%s|%.2f|%s\n", p.getSKU(), p.getProductName(), p.getPrice(), p.getDepartment());
+                                    }
+                                    System.out.println("Please type in the name of item you want to remove!");
+                                    System.out.println("Or type (X) to leave.");
+                                    userInput = sc.nextLine().trim().toLowerCase();
+                                    Product item = Product.addProducts(products, userInput);
+                                    if (item != null) {
+                                        System.out.println(item.getProductName() + " added to cart!");
+                                        userCart.remove(item.getSKU(), item);
+                                    }
+                                    else {
+                                        System.out.println("Product not found!");
+                                    }
+
+                                }
                             }
                             case ("X") -> {userInCheckout = false;}
                             default -> {System.out.println("Incorrect userInput!");}
