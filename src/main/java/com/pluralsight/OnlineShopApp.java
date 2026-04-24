@@ -11,7 +11,8 @@ public class OnlineShopApp {
         HashMap<Integer, Product> userCart = new HashMap<>();
         String userInput = "";
         ArrayList<Product> products = Product.getProductList();
-        //ArrayList<Product> search = Product.searchProducts(products, userInput);
+        ArrayList<Product> search = Product.searchProducts(products, userInput);
+        // searchResults = Product.searhResults(products, search);
 
         boolean userInApp = true;
         boolean userInProduct = true;
@@ -41,17 +42,20 @@ public class OnlineShopApp {
                             case ("S") -> {
                                 System.out.println("Search by Product Name, Price, or Department!");
                                 userInput = sc.nextLine().replaceAll("\\s+","").trim().toLowerCase();
-                                ArrayList<Product> search = Product.searchProducts(products, userInput);
+                                search = Product.searchProducts(products, userInput);
 
-                                if (search.isEmpty()) {System.out.println("Product not currently available!");}
+/*                                if (search.isEmpty()) {System.out.println("Product not currently available!");}
                                 else {
                                     for (Product p : search) {
                                         System.out.printf("%s|%s|$%.2f|%s\n", p.getSKU(), p.getProductName(), p.getPrice(), p.getDepartment());
                                     }
-                                }
+                                }*/
                             }
                             case ("A") -> {
-                                System.out.println("Hey this works!");
+                                System.out.println("Type in a name product you want to add!");
+                                userInput = sc.nextLine().replaceAll("\\s+","").trim().toLowerCase();
+                                search = Product.searchProducts(products, userInput);
+
                             }
                             case ("X") -> {userInProduct = false;}
                             default -> {System.out.println("Incorrect userInput!");}

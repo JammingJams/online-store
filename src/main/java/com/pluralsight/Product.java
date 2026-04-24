@@ -77,5 +77,17 @@ public class Product {
         }    return results;
     }
 
+    public static void searhResults(ArrayList<Product> products, ArrayList<Product> search) {
+        if (search.isEmpty()) {System.out.println("Product not currently available!");}
+        else {
+            for (Product p : search) {
+                System.out.printf("%s|%s|$%.2f|%s\n", p.getSKU(), p.getProductName(), p.getPrice(), p.getDepartment());
+            }
+        }
+
+    }
+
+
+
 }
 
